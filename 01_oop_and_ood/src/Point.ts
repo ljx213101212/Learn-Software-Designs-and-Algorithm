@@ -23,9 +23,11 @@ export class Point {
     this.x = x;
     this.y = y;
   }
+
   toString() {
     return `(${String(this.x)}, ${String(this.y)})`;
   }
+  
   distance(): number;
   distance(other?: Point): number;
   distance(otherOrX?: Point | number, y?: number): number {
