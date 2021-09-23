@@ -1,14 +1,14 @@
 import { Point } from './Point';
 
-enum Color {
+export enum Color {
   GREEN = 'green',
   RED = 'red',
 }
-enum FillStatus {
+export enum FillStatus {
   FILLED = 'filled',
   NOT_FILLED = 'Not filled',
 }
-const AT_LEAST_3_POINTS_EXCEPTION =
+export const AT_LEAST_3_POINTS_EXCEPTION =
   'the `Shape` should have at least 3 points!';
 /**
  * 2. Create abstract superclass called `Shape`, which contains:
