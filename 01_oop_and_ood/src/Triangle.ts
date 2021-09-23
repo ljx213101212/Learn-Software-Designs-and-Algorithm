@@ -38,14 +38,14 @@ export class Triangle extends Shape {
     const side1 = this.point1.distance(this.point2);
     const side2 = this.point2.distance(this.point3);
     const side3 = this.point3.distance(this.point1);
-    return side1 === side2 && side2 === side3;
+    return side1.toFixed(1) === side2.toFixed(1) && side2.toFixed(1) === side3.toFixed(1);
   }
 
   private isIsosceles(): boolean {
     const side1 = this.point1.distance(this.point2);
     const side2 = this.point2.distance(this.point3);
     const side3 = this.point3.distance(this.point1);
-    return side1 === side2 || side2 === side3 || side3 === side1;
+    return side1.toFixed(1) === side2.toFixed(1) || side2.toFixed(1) === side3.toFixed(1) || side3.toFixed(1) === side1.toFixed(1);
   }
 
   getType(): string {
@@ -67,6 +67,9 @@ export class Triangle extends Shape {
     color?: string
   ) {
     super([point1, point2, point3]);
+    this.point1 = point1;
+    this.point2 = point2;
+    this.point3 = point3;
     this.filled = filled ?? true;
     this.color = color ?? Color.GREEN;
   }

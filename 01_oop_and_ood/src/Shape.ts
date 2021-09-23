@@ -6,7 +6,7 @@ export enum Color {
 }
 export enum FillStatus {
   FILLED = 'filled',
-  NOT_FILLED = 'Not filled',
+  NOT_FILLED = 'not filled',
 }
 export const AT_LEAST_3_POINTS_EXCEPTION =
   'the `Shape` should have at least 3 points!';
@@ -31,7 +31,7 @@ export abstract class Shape {
   points: Point[];
 
   constructor(points: Point[]);
-  constructor(points: Point[], filled?: boolean, color?: string) {
+  constructor(points: Point[], color?: string,  filled?: boolean) {
     if (points.length < 3) {
       throw AT_LEAST_3_POINTS_EXCEPTION;
     }
@@ -58,7 +58,7 @@ export abstract class Shape {
   }
 
   toString(): string {
-    return `A Shape with color of ${this.getColorDef()} and ${this.getFilledDef()}. ${this.getCombinedPointsDef()}`;
+    return `A Shape with color of ${this.getColorDef()} and ${this.getFilledDef()}. ${this.getCombinedPointsDef()}.`;
   }
 
   getPerimeter(): number {

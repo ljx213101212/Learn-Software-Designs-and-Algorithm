@@ -31,7 +31,7 @@ export class Point {
   distance(): number;
   distance(other?: Point): number;
   distance(otherOrX?: Point | number, y?: number): number {
-      if (typeof otherOrX === undefined) {
+      if (typeof otherOrX === 'undefined') {
         return Math.hypot(this.x, this.y);
       }
       if (typeof otherOrX === "object") {
