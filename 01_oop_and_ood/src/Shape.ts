@@ -33,7 +33,7 @@ export abstract class Shape {
   constructor(points: Point[]);
   constructor(points: Point[], color?: string,  filled?: boolean) {
     if (points.length < 3) {
-      throw AT_LEAST_3_POINTS_EXCEPTION;
+      throw new Error(AT_LEAST_3_POINTS_EXCEPTION);
     }
     this.points = points;
     this.filled = filled ?? true;
@@ -49,12 +49,7 @@ export abstract class Shape {
   }
 
   private getCombinedPointsDef(): string {
-    let pointsDef = 'Points: ';
-    this.points.forEach((point) => {
-      pointsDef += point.toString();
-      pointsDef += ', ';
-    });
-    return pointsDef.slice(0, -2);
+    return 'Points: ' + this.points.join(', ');
   }
 
   toString(): string {
