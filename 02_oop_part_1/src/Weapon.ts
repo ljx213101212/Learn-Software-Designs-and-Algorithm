@@ -1,5 +1,7 @@
-import { DISPLAY_PRECISION } from './constants';
+import { DISPLAY_PRECISION } from './Constants';
 import { Item } from './Item';
+
+export const MODIFIER_CHANGE_RATE = 0.05;
 /**
  * The @Weapon class is an abstract implementation of Item and describes items that can deal damage and break from use.
  * The implementation of this class is provided for you.
@@ -9,7 +11,7 @@ import { Item } from './Item';
  * The sum of these two values determines the effective durability of the Weapon.
  * When this sum reaches zero or less, the effective durability is zero and the Weapon is considered to be broken and cannot be used.
  */
-class Weapon extends Item {
+export default class Weapon extends Item {
   baseDamage: number;
   damageModifier: number;
   baseDurability: number;
