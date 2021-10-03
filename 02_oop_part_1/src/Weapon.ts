@@ -10,24 +10,27 @@ import { Item } from './Item';
  * The sum of these two values determines the effective durability of the Weapon.
  * When this sum reaches zero or less, the effective durability is zero and the Weapon is considered to be broken and cannot be used.
  */
-export default class Weapon extends Item {
+export default abstract class Weapon extends Item {
   baseDamage: number;
   damageModifier: number;
   baseDurability: number;
   durabilityModifier: number;
-  modifierChangeRate: number;
 
   public static MODIFIER_CHANGE_RATE: number = 0.05;
 
   constructor(
     name: string,
+    baseDamage: number,
+    baseDurability: number,
     value: number,
-    weight: number,
-    modifierChangeRate: number
+    weight: number
   ) {
     super(name, value, weight);
-    this.modifierChangeRate = modifierChangeRate;
+    this.baseDamage = baseDamage;
+    this.baseDurability = baseDurability;
   }
+
+  abstract polish(): void;
 
   /**
    * @returns the effective damage of the Weapon.

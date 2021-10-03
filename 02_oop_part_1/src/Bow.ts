@@ -3,10 +3,14 @@ import Weapon from './Weapon';
  * All instances of the Bow class have the name “bow”.
  */
 export default class Bow extends Weapon {
-  constructor(value: number, weight: number, modifierChangeRate: number) {
-    super('', value, weight, Weapon.MODIFIER_CHANGE_RATE);
+  constructor(
+    baseDamage: number,
+    baseDurability: number,
+    value: number,
+    weight: number
+  ) {
+    super('', baseDamage, baseDurability, value, weight);
     this.name = (typeof Bow).toLowerCase();
-    this.modifierChangeRate = modifierChangeRate;
   }
 
   /**

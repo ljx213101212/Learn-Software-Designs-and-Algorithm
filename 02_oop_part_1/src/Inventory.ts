@@ -5,6 +5,14 @@ import { ItemComparator } from './ItemComparator';
  */
 export default class Inventory {
   items: Item[];
+
+  constructor() {
+    this.items = [];
+  }
+
+  addItem(newItem: Item): void {
+    this.items.push(newItem);
+  }
   /**
    * Inventory.sort():
    * This sorts the items in the Inventory instance based on their value

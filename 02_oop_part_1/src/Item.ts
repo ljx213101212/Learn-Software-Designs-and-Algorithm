@@ -1,11 +1,36 @@
 import { Comparable } from './Comparable';
-
-let id = 0;
+import { ItemWeightComparator } from './ItemWeightComparator';
 
 export abstract class Item implements Comparable<Item> {
-  name: string;
-  value: number;
-  weight: number;
+  private static numberOfItems: number;
+  private _id: number;
+  public get id(): number {
+    return this._id;
+  }
+  public set id(value: number) {
+    this._id = value;
+  }
+  private _name: string;
+  public get name(): string {
+    return this._name;
+  }
+  public set name(value: string) {
+    this._name = value;
+  }
+  private _value: number;
+  public get value(): number {
+    return this._value;
+  }
+  public set value(value: number) {
+    this._value = value;
+  }
+  private _weight: number;
+  public get weight(): number {
+    return this._weight;
+  }
+  public set weight(value: number) {
+    this._weight = value;
+  }
 
   constructor(name: string, value: number, weight: number) {
     this.name = name;
@@ -55,5 +80,12 @@ export abstract class Item implements Comparable<Item> {
     } else {
       return first.compareTo(second);
     }
+  }
+
+  /**
+   * reset() method should assign 0 to the “counter”
+   */
+  public static reset(): void {
+    this.numberOfItems = 0;
   }
 }
