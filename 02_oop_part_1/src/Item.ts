@@ -6,6 +6,13 @@ export abstract class Item implements Comparable<Item> {
   name: string;
   value: number;
   weight: number;
+
+  constructor(name: string, value: number, weight: number) {
+    this.name = name;
+    this.value = value;
+    this.weight = weight;
+  }
+
   /**
    *
    * If the current instance’s value field is greater than other’s value field then the method should return a positive integer (convention is 1).
