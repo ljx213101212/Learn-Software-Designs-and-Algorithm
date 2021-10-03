@@ -1,5 +1,4 @@
 import { Comparable } from './Comparable';
-import { ItemWeightComparator } from './ItemWeightComparator';
 
 export abstract class Item implements Comparable<Item> {
   private static numberOfItems: number;
@@ -36,6 +35,7 @@ export abstract class Item implements Comparable<Item> {
     this.name = name;
     this.value = value;
     this.weight = weight;
+    Item.numberOfItems += 1;
   }
 
   /**
@@ -86,6 +86,6 @@ export abstract class Item implements Comparable<Item> {
    * reset() method should assign 0 to the “counter”
    */
   public static reset(): void {
-    this.numberOfItems = 0;
+    Item.numberOfItems = 0;
   }
 }

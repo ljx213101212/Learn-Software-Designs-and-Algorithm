@@ -23,6 +23,6 @@ export default class Pizza extends Consumable {
       WEIGHT_PIZZA * numberOfSlices,
       isSpoiled
     );
-    this.name = (typeof Pizza).toLowerCase();
+    this.name = "pizza";
   }
 }

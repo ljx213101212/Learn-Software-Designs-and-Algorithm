@@ -7,7 +7,6 @@ import { Item } from './Item';
  * A newly-created Consumable object should have its consumed field set to false.
  */
 export default class Consumable extends Item {
-
   private _spolied: boolean;
   public get isSpolied(): boolean {
     return this._spolied;
@@ -48,7 +47,7 @@ export default class Consumable extends Item {
   }
 
   eat(): string {
-    const extraMessage = this.isSpolied ? '\n You feel sick.' : '';
+    const extraMessage = this.isSpolied ? '\nYou feel sick.' : '';
     this.isConsumed = true;
     return `You eat the ${this.name}.${extraMessage}`;
   }

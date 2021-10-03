@@ -6,7 +6,10 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "tsc",
+    "start": "node out/Main.js"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {

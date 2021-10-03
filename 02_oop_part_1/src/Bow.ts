@@ -10,7 +10,7 @@ export default class Bow extends Weapon {
     weight: number
   ) {
     super('', baseDamage, baseDurability, value, weight);
-    this.name = (typeof Bow).toLowerCase();
+    this.name = 'bow';
   }
 
   /**
