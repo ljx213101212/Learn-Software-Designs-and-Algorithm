@@ -1,7 +1,6 @@
 import { DISPLAY_PRECISION } from './Constants';
 import { Item } from './Item';
 
-export const MODIFIER_CHANGE_RATE = 0.05;
 /**
  * The @Weapon class is an abstract implementation of Item and describes items that can deal damage and break from use.
  * The implementation of this class is provided for you.
@@ -17,6 +16,8 @@ export default class Weapon extends Item {
   baseDurability: number;
   durabilityModifier: number;
   modifierChangeRate: number;
+
+  public static MODIFIER_CHANGE_RATE: number = 0.05;
 
   constructor(
     name: string,

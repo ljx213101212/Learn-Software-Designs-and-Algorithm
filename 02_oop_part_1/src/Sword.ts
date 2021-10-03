@@ -1,10 +1,10 @@
-import Weapon, { MODIFIER_CHANGE_RATE } from './Weapon';
+import Weapon from './Weapon';
 /**
  *All instances of the Sword class have the name “sword”.
  */
 export default class Sword extends Weapon {
   constructor(value: number, weight: number, modifierChangeRate: number) {
-    super('', value, weight, MODIFIER_CHANGE_RATE);
+    super('', value, weight, Weapon.MODIFIER_CHANGE_RATE);
     this.name = (typeof Sword).toLowerCase();
     this.modifierChangeRate = modifierChangeRate;
   }
@@ -17,7 +17,7 @@ export default class Sword extends Weapon {
    */
   polish(): void {
     const maxDamage = this.baseDamage * 0.25;
-    const polishedDamage = this.damageModifier + MODIFIER_CHANGE_RATE;
+    const polishedDamage = this.damageModifier + Weapon.MODIFIER_CHANGE_RATE;
     this.damageModifier =
       polishedDamage >= maxDamage ? maxDamage : polishedDamage;
   }
