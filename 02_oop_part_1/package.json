@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "build-watch": "tsc -w",
     "start": "node out/Main.js"
   },
   "author": "",

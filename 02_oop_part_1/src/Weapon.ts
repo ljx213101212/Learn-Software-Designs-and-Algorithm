@@ -16,7 +16,7 @@ export default abstract class Weapon extends Item {
   baseDurability: number;
   durabilityModifier: number;
 
-  public static MODIFIER_CHANGE_RATE: number = 0.05;
+  public static MODIFIER_CHANGE_RATE: number = 5;
 
   constructor(
     name: string,
@@ -28,6 +28,8 @@ export default abstract class Weapon extends Item {
     super(name, value, weight);
     this.baseDamage = baseDamage;
     this.baseDurability = baseDurability;
+    this.damageModifier = 0;
+    this.durabilityModifier = 0;
   }
 
   abstract polish(): void;
@@ -94,13 +96,13 @@ export default abstract class Weapon extends Item {
     }
 
     let extraMessage: string = '';
-    if (currentDurability <= this.modifierChangeRate) {
+    if (currentDurability <= Weapon.MODIFIER_CHANGE_RATE) {
       extraMessage = `The ${this.name} breaks`;
     }
     const damageNumber: number = this.getDamage();
     const damageStr: string = this.getDamage().toFixed(DISPLAY_PRECISION);
     //use weapon
-    this.durabilityModifier -= this.modifierChangeRate;
+    this.durabilityModifier -= Weapon.MODIFIER_CHANGE_RATE;
 
     return `You use the hammer, dealing ${damageStr} ${
       damageNumber <= 1 ? 'point' : 'points'
