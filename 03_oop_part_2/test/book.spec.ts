@@ -1,5 +1,4 @@
-import { Pages } from '../src/Page';
-import { Page } from '../src/Page';
+import { Page, Pages } from '../src/Page';
 import { Book } from '../src/book';
 
 describe('Book', () => {
@@ -15,7 +14,6 @@ describe('Book', () => {
                 new Page(4, 'with text', 'simple paper'),
             ])
         );
-
         for (const page of book) {
             expect(page.toString()).toEqual(
                 `Book: Harry Potter by J. K. Rowling with number of pages: 4, here is page with text #${counter} and it\'s material is simple paper`

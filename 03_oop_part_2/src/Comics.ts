@@ -1,6 +1,6 @@
+import { Item } from './Item';
 import { Pages } from './Page';
 import { PagesIterable } from './PagesIterable';
-import { Item } from './Item';
 /**
  * class Comics (should be Iterable):
  *
@@ -10,7 +10,6 @@ import { Item } from './Item';
  * d. pages” property keeps instance of Pages class
  */
 export class Comics extends PagesIterable(Item) {
-    pages: Pages;
     private _title: string;
     public get title(): string {
         return this._title;
@@ -33,15 +32,14 @@ export class Comics extends PagesIterable(Item) {
         this._artist = value;
     }
     constructor(title: string, author: string, artist: string, pages: Pages) {
-        super(pages);
+        super();
         this.pages = pages;
         this.title = title;
         this.author = author;
         this.artist = artist;
+        this.item = this as unknown as Item;
     }
     toString() {
-        return `Comics: ${this.title} by ${this.author}, the artist is ${
-            this.artist
-        }, number of pages: ${this.pages.factory.getPagesLength()}`;
+        return `Comics: ${this.title} by ${this.author}, the artist is ${this.artist}, number of pages: ${this.pages.pages.length}`;
     }
 }

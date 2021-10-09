@@ -1,6 +1,7 @@
+import { Item } from './Item';
 import { Pages } from './Page';
 import { PagesIterable } from './PagesIterable';
-import { Item } from './Item';
+
 /**
  * class Book (should be Iterable):
  *
@@ -25,12 +26,13 @@ export class Book extends PagesIterable(Item) {
         this._author = value;
     }
     constructor(title: string, author: string, pages: Pages) {
-        super(pages);
+        super();
         this.pages = pages;
         this.title = title;
         this.author = author;
+        this.item = this as unknown as Item;
     }
     toString() {
-        return `Book: ${this.title} by ${this.author} with number of pages: ${this.pages.factory.getPagesLength()}`;
+        return `Book: ${this.title} by ${this.author} with number of pages: ${this.pages.pages.length}`;
     }
 }

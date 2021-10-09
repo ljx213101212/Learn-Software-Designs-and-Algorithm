@@ -1,6 +1,6 @@
+import { Item } from './Item';
 import { Pages } from './Page';
 import { PagesIterable } from './PagesIterable';
-import { Item } from './Item';
 /**
  * class Magazine (should be Iterable):
  * a. properties: “pages”, “title”
@@ -8,8 +8,7 @@ import { Item } from './Item';
  * c. “toString” -> “Magazine: {title} with number of pages: {number}”
  * d. “pages” property keeps instance of Pages class
  */
-export class Magazine extends PagesIterable(Item) {
-    pages: Pages;
+export class Magazine extends PagesIterable(Pages) {
     private _title: string;
     public get title(): string {
         return this._title;
@@ -18,11 +17,12 @@ export class Magazine extends PagesIterable(Item) {
         this._title = value;
     }
     constructor(title: string, pages: Pages) {
-        super(pages);
+        super();
         this.pages = pages;
         this.title = title;
+        this.item = this as unknown as Item;
     }
     toString() {
-        return `Magazine: ${this.title} with number of pages: ${this.pages.factory.getPagesLength()}`;
+        return `Magazine: ${this.title} with number of pages: ${this.pages.pages.length}`;
     }
 }

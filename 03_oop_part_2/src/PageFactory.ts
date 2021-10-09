@@ -4,15 +4,9 @@ import { Page, Pages } from './Page';
  * Implement PageFactory, so it will incapsulate pages creation logic.
  */
 export default class PageFactory {
-    constructor(public pages: Page[]) {}
+    constructor(public pageNumber: number, public pageType: string, public pageMaterial: string) {}
 
-    public createPages() {
-        for (let i = 0; i < this.pages.length; i++) {
-            this.pages.push(new Page(i + 1, this.pages[i].pageType, this.pages[i].pageMaterial));
-        }
-    }
-
-    public getPagesLength() {
-        return this.pages.length;
+    public createPages(): Page {
+        return new Page(this.pageNumber, this.pageType, this.pageMaterial);
     }
 }

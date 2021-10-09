@@ -1,3 +1,4 @@
+import { Item } from './Item';
 import PageFactory from './PageFactory';
 
 /**
@@ -28,10 +29,14 @@ export class Page {
  * a. should provide appropriate methods to communicate with iterator
  */
 export class Pages {
-    pages: Page[];
-    factory: PageFactory;
+    private _pages: Page[];
+    public get pages(): Page[] {
+        return this._pages;
+    }
+    public set pages(value: Page[]) {
+        this._pages = value;
+    }
     constructor(pages: Page[]) {
-        this.factory = new PageFactory(pages);
-        this.factory.createPages();
+        this.pages = pages;
     }
 }
