@@ -9,7 +9,7 @@ export default class Sword extends Weapon {
     value: number,
     weight: number
   ) {
-    super('', baseDamage, baseDurability, value, weight);
+    super('sword', baseDamage, baseDurability, value, weight);
     this.name = 'sword';
   }
 
@@ -21,8 +21,9 @@ export default class Sword extends Weapon {
    */
   polish(): void {
     const maxDamage = this.baseDamage * 0.25;
-    const polishedDamage = this.damageModifier + Weapon.MODIFIER_CHANGE_RATE;
+    const polishedDamageModifier =
+      this.damageModifier + Weapon.MODIFIER_CHANGE_RATE;
     this.damageModifier =
-      polishedDamage >= maxDamage ? maxDamage : polishedDamage;
+      polishedDamageModifier >= maxDamage ? maxDamage : polishedDamageModifier;
   }
 }

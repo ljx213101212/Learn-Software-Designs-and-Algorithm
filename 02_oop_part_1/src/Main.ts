@@ -1,11 +1,12 @@
 import Bow from './Bow';
 import Inventory from './Inventory';
+import { Item } from './Item';
 import Pizza from './Pizza';
 import Sword from './Sword';
 
 const myInventory: Inventory = new Inventory();
-function pickPizza(amountOfSlices: number, isSpolied: boolean) {
-  return new Pizza(amountOfSlices, isSpolied);
+function pickPizza(amountOfSlices: number, spoiled: boolean) {
+  return new Pizza(amountOfSlices, spoiled);
 }
 
 function pickSword(
@@ -81,6 +82,14 @@ function sampleBluePrintResultOnly() {
   console.log(
     (myInventory.items[3] as Sword).compareTo(myInventory.items[5] as Bow)
   );
+
+  //Reset item
+  Item.reset();
+  // Add new bow
+  myInventory.addItem(pickBow(500, 1600, 1500, 8));
+  console.log((myInventory.items[6] as Bow).id + ' is 0');
+  //Inventory.toString()
+  console.log(myInventory.toString());
 }
 
 main();

@@ -7,26 +7,30 @@ import { Item } from './Item';
  * A newly-created Consumable object should have its consumed field set to false.
  */
 export default class Consumable extends Item {
-  private _spolied: boolean;
-  public get isSpolied(): boolean {
-    return this._spolied;
-  }
-  public set isSpolied(value: boolean) {
-    this._spolied = value;
-  }
-  private _consumed: boolean;
-  public get isConsumed(): boolean {
-    return this._consumed;
-  }
-  public set isConsumed(value: boolean) {
-    this._consumed = value;
+  spoiled: boolean;
+  consumed: boolean;
+
+  public getSpoiled(): boolean {
+    return this.spoiled;
   }
 
-  constructor(name: string, value: number, weight: number, isSpolied: boolean) {
+  public setSpoiled(spoiled: boolean): void {
+    this.spoiled = spoiled;
+  }
+
+  public getConsumed(): boolean {
+    return this.consumed;
+  }
+
+  public setConsumed(consumed: boolean): void {
+    this.consumed = consumed;
+  }
+
+  constructor(name: string, value: number, weight: number, spoiled: boolean) {
     super(name, value, weight);
     this.name = name;
-    this.isSpolied = isSpolied;
-    this.isConsumed = false;
+    this.spoiled = spoiled;
+    this.consumed = false;
   }
   /**
    * Consumable.use(): If a Consumable is not spoiled and is not consumed,
@@ -40,15 +44,15 @@ export default class Consumable extends Item {
    * ”You eat the bread. You feel sick.”
    */
   use(): string {
-    if (this.isConsumed) {
+    if (this.consumed) {
       return `There is nothing left of the ${this.name} to consume.`;
     }
     return this.eat();
   }
 
   eat(): string {
-    const extraMessage = this.isSpolied ? '\nYou feel sick.' : '';
-    this.isConsumed = true;
+    const extraMessage = this.spoiled ? '\nYou feel sick.' : '';
+    this.consumed = true;
     return `You eat the ${this.name}.${extraMessage}`;
   }
 }

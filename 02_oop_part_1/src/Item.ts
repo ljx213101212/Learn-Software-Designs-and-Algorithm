@@ -2,36 +2,46 @@ import { Comparable } from './Comparable';
 
 export abstract class Item implements Comparable<Item> {
   private static numberOfItems: number;
-  private _id: number;
-  public get id(): number {
-    return this._id;
+
+  id: number;
+  name: string;
+  value: number;
+  weight: number;
+
+  public getId(): number {
+    return this.id;
   }
-  public set id(value: number) {
-    this._id = value;
+
+  public setId(id: number): void {
+    this.id = id;
   }
-  private _name: string;
-  public get name(): string {
-    return this._name;
+
+  public getName(): string {
+    return this.name;
   }
-  public set name(value: string) {
-    this._name = value;
+
+  public setName(name: string): void {
+    this.name = name;
   }
-  private _value: number;
-  public get value(): number {
-    return this._value;
+
+  public getValue(): number {
+    return this.value;
   }
-  public set value(value: number) {
-    this._value = value;
+
+  public setValue(value: number): void {
+    this.value = value;
   }
-  private _weight: number;
-  public get weight(): number {
-    return this._weight;
+
+  public getWeight(): number {
+    return this.weight;
   }
-  public set weight(value: number) {
-    this._weight = value;
+
+  public setWeight(weight: number): void {
+    this.weight = weight;
   }
 
   constructor(name: string, value: number, weight: number) {
+    this.id = Item.numberOfItems;
     this.name = name;
     this.value = value;
     this.weight = weight;
@@ -64,22 +74,9 @@ export abstract class Item implements Comparable<Item> {
    *  "ring − Value: 3000, Weight: 0.01"
    */
   public toString(): string {
-    return `${this.name} - Value: ${this.value}, Weight: ${this.weight}`;
-  }
-
-  /**
-   *  The compare(first: Item, second: Item) method of ItemWeightComparator should function similarly to the compareTo(other: Item) method of the Item class,
-   *  but for the weight field of the Items. If the weights are equal,
-   *  this method should call the compareTo(other: Item) method of the first Item and return the resulting value.
-   */
-  public compare(first: Item, second: Item): number {
-    if (first.weight > second.weight) {
-      return 1;
-    } else if (first.weight < second.weight) {
-      return -1;
-    } else {
-      return first.compareTo(second);
-    }
+    return `${this.name} - Value: ${this.value}, Weight: ${this.weight.toFixed(
+      2
+    )}`;
   }
 
   /**

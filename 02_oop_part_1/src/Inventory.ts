@@ -35,6 +35,6 @@ export default class Inventory {
    * Inventory.toString: return string representation of the item list (.join(‘, ’))
    */
   toString(): string {
-    return this.items.map((item) => item.name).join(',');
+    return this.items.join(', ');
   }
 }

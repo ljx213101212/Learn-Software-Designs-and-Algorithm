@@ -16,7 +16,7 @@ export default abstract class Weapon extends Item {
   baseDurability: number;
   durabilityModifier: number;
 
-  public static MODIFIER_CHANGE_RATE: number = 5;
+  public static MODIFIER_CHANGE_RATE: number = 0.05;
 
   constructor(
     name: string,
@@ -61,13 +61,11 @@ export default abstract class Weapon extends Item {
    * @returns "hammer − Value: 300, Weight : 2.03 , Damage : 30.47 , Durability : 83.93%"
    */
   toString(): string {
-    return `${this.name} - Value: ${this.value.toFixed(
-      DISPLAY_PRECISION
-    )}, Weight : ${this.weight.toFixed(
+    return `${this.name} - Value: ${this.value}, Weight : ${this.weight.toFixed(
       DISPLAY_PRECISION
     )} , Damage : ${this.getDamage().toFixed(
       DISPLAY_PRECISION
-    )} , Durability : ${this.getDurability().toFixed(DISPLAY_PRECISION)}`;
+    )} , Durability : ${this.getDurability().toFixed(DISPLAY_PRECISION)}%`;
   }
 
   /**
@@ -104,8 +102,8 @@ export default abstract class Weapon extends Item {
     //use weapon
     this.durabilityModifier -= Weapon.MODIFIER_CHANGE_RATE;
 
-    return `You use the hammer, dealing ${damageStr} ${
+    return `You use the ${this.name}, dealing ${damageStr} ${
       damageNumber <= 1 ? 'point' : 'points'
-    } of damage`;
+    } of damage. ${extraMessage}`;
   }
 }

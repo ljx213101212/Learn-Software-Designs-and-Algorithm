@@ -2,27 +2,31 @@ import { PRICE_PIZZA, WEIGHT_PIZZA } from './Constants';
 import Consumable from './Consumable';
 
 export default class Pizza extends Consumable {
-  private _numberOfSlices: number;
-  public get numberOfSlices(): number {
-    return this._numberOfSlices;
+  numberOfSlices: number;
+  sliceEasten: number;
+
+  public getNumberOfSlices(): number {
+    return this.numberOfSlices;
   }
-  public set numberOfSlices(value: number) {
-    this._numberOfSlices = value;
+  public setNumberOfSlices(numberOfSlices: number): void {
+    this.numberOfSlices = numberOfSlices;
   }
-  private _slicesEasten: number;
-  public get slicesEasten(): number {
-    return this._slicesEasten;
+
+  public getSlicesEasten(): number {
+    return this.sliceEasten;
   }
-  public set slicesEasten(value: number) {
-    this._slicesEasten = value;
+
+  public setSlicesEasten(value: number): void {
+    this.sliceEasten = value;
   }
-  constructor(numberOfSlices: number, isSpoiled: boolean) {
+
+  constructor(numberOfSlices: number, spoiled: boolean) {
     super(
       '',
       PRICE_PIZZA * numberOfSlices,
       WEIGHT_PIZZA * numberOfSlices,
-      isSpoiled
+      spoiled
     );
-    this.name = "pizza";
+    this.name = 'pizza';
   }
 }

@@ -9,7 +9,7 @@ export default class Bow extends Weapon {
     value: number,
     weight: number
   ) {
-    super('', baseDamage, baseDurability, value, weight);
+    super('bow', baseDamage, baseDurability, value, weight);
     this.name = 'bow';
   }
 
@@ -19,7 +19,7 @@ export default class Bow extends Weapon {
    */
   polish(): void {
     const polishedDurability =
-      this.getDurability() + Weapon.MODIFIER_CHANGE_RATE;
+      this.baseDurability + Weapon.MODIFIER_CHANGE_RATE;
     this.durabilityModifier = polishedDurability >= 1 ? 1 : polishedDurability;
   }
 }
