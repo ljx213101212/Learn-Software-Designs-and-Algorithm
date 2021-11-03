@@ -1,3 +1,5 @@
+import Shipper from '../Shipper/Shipper';
+
 export default class Shipment {
   shipmentId: number;
   toAddress: string;
@@ -6,6 +8,8 @@ export default class Shipment {
   fromZipCode: string;
   weight: number;
   marks?: string[];
+
+  shipper: Shipper;
 
   constructor(
     shipmentId: number,
@@ -24,7 +28,30 @@ export default class Shipment {
     this.weight = weight;
     this.marks = marks;
   }
-  getCost(): number {
-    return 0;
+
+  getShipmentId(): number {
+    return this.shipmentId;
+  }
+
+  getMarksMessage(): string {
+    let marksMessage = '';
+    this.marks.forEach((mark) => {
+      marksMessage += mark;
+    });
+    return marksMessage;
+  }
+
+  getShipmentMessage(): string {
+    return (
+      `Shipment with the ID ${this.shipmentId} ` +
+      `will be picked up from ${this.fromAddress} and` +
+      `and shipped to ${this.toAddress} ` +
+      `Cost= ${this.shipper.getCost(this.weight)} ` +
+      this.getMarksMessage()
+    );
+  }
+
+  ship(): string {
+    return this.getShipmentMessage();
   }
 }

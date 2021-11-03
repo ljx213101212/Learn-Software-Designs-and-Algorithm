@@ -1,5 +1,3 @@
-export default class Shipper {
-  getCost(): number {
-    return 0;
-  }
+export default abstract class Shipper {
+  public abstract getCost(weight: number): number;
 }
