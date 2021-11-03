@@ -1,11 +1,11 @@
-import Shipment from './Shipment';
+import Shipment, { ShipmentType } from './Shipment';
 
 
 const LetterType = <T extends { new (...args: any[]): {} }>(
     constructor: T
   ) => {
     return class extends constructor {
-        type = 'Letter';
+        type = ShipmentType.LETTER;
         minWeight = 0;
         maxWeight = 15;
     };
@@ -33,12 +33,9 @@ const LetterType = <T extends { new (...args: any[]): {} }>(
 //   };
 @LetterType
 export default class Letter extends Shipment {
-  type: string = 'Letter';
-  weight: number;
   [x: string]: any;
 
   constructor(
-    shipmentId: number,
     toAddress: string,
     fromAddress: string,
     toZipCode: string,
@@ -47,7 +44,6 @@ export default class Letter extends Shipment {
     marks?: string[]
   ) {
     super(
-      shipmentId,
       toAddress,
       fromAddress,
       toZipCode,

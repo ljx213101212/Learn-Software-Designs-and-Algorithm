@@ -1,18 +1,26 @@
+import Gui, { ON_SET_SHIPMENT, ON_SHIP_EVENT } from "./Gui";
 import Shipment from "./model/Shipment/Shipment";
-class Client {
-    shipment: Shipment;
 
-    static shipmentId: number = 1;
+export default class Client {
+    shipment: Shipment | null;
+    gui: Gui;
 
-    // constructor() {
-    //     shipment = new Shipment();
-    // }
-    // shipItself(): string {
-    //     return `Shipment ID: ${this.shipment.shipmentId} \n` + 
-    //             `Sent from: ${this.shipment.fromAddress} \n` +
-    //             `Sent to: ${this.shipment.toAddress} \n` + 
-    //             `Cost: ${this.shipment.getCost()} \n`;
-    // }
+    constructor(gui: Gui) {
+        this.shipment = null;
+        this.gui = gui;
+        this.gui.eventEmitter.on(ON_SET_SHIPMENT, () => {
+            this.gui.on(ON_SET_SHIPMENT, this.setShipment.bind(this));
+        });
+        this.gui.eventEmitter.on(ON_SHIP_EVENT, () => {
+            this.gui.on(ON_SHIP_EVENT, this.shipItSelf.bind(this));
+        })
+    }
 
-    
+    public setShipment(shipment: Shipment) {
+        this.shipment = shipment;
+    }
+
+    public shipItSelf(shipment: Shipment): void {
+        console.log(shipment?.ship());
+    }
 }

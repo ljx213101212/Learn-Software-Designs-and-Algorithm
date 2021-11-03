@@ -1,6 +1,15 @@
 import Shipper from '../Shipper/Shipper';
+import Letter from './Letter';
 
-export default class Shipment {
+export enum ShipmentType {
+  LETTER = "Letter",
+  OVERSIZE = "Oversize",
+  PACKAGE = "Package",
+}
+
+
+export default abstract class Shipment {
+  type: string;
   shipmentId: number;
   toAddress: string;
   fromAddress: string;
@@ -9,10 +18,10 @@ export default class Shipment {
   weight: number;
   marks?: string[];
 
-  shipper: Shipper;
+  shipper: Shipper | null;
 
+  static id: number = 1;
   constructor(
-    shipmentId: number,
     toAddress: string,
     fromAddress: string,
     toZipCode: string,
@@ -20,13 +29,17 @@ export default class Shipment {
     weight: number,
     marks?: string[]
   ) {
-    this.shipmentId = shipmentId;
+    this.shipmentId = ++Shipment.id;
     this.toAddress = toAddress;
     this.fromAddress = fromAddress;
     this.toZipCode = toZipCode;
     this.fromZipCode = fromZipCode;
     this.weight = weight;
     this.marks = marks;
+  }
+
+  setShipper(shipper: Shipper): void {
+    this.shipper = shipper;
   }
 
   getShipmentId(): number {
@@ -46,12 +59,16 @@ export default class Shipment {
       `Shipment with the ID ${this.shipmentId} ` +
       `will be picked up from ${this.fromAddress} and` +
       `and shipped to ${this.toAddress} ` +
-      `Cost= ${this.shipper.getCost(this.weight)} ` +
+      `Cost= ${this.shipper?.getCost(this.weight, this.type)} ` +
       this.getMarksMessage()
     );
   }
 
   ship(): string {
+    if (!this.shipper) {
+      console.error(`please assign a shipper to the shipment: ${this.shipmentId}`)
+      return "ship failed.";
+    }
     return this.getShipmentMessage();
   }
 }
